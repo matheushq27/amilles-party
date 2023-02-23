@@ -284,13 +284,13 @@ $pdf = $dompdf->output();
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'matheus.e.arruda@gmail.com';
-        $mail->Password = 'lwjiwgmeclzrtowv';
+        $mail->Username = 'amilleribeiro3@gmail.com';
+        $mail->Password = 'plvltzogebzycihb';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
      
-        $mail->setFrom('matheus.e.arruda@gmail.com', 'Matheus');
-        $mail->addAddress('matheus.e.arruda@gmail.com');
+        $mail->setFrom('amilleribeiro3@gmail.com', "Lista de Convidados");
+        $mail->addAddress('amilleribeiro3@gmail.com');
         $mail->addStringAttachment($pdf, 'lista-de-presenca.pdf');
 
         $mail->isHTML(true);

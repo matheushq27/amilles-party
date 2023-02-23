@@ -21,7 +21,7 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'amilles_party' );
+define( 'DB_NAME', 'local' );
 
 /** Database username */
 define( 'DB_USER', 'root' );
