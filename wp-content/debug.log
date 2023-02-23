@@ -1,0 +1,16 @@
+[14-Feb-2023 02:51:40 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/matheus/Local Sites/festaamille/app/public/wp-content/themes/amille-party/functions.php:69
+Stack trace:
+#0 /home/matheus/Local Sites/festaamille/app/public/wp-includes/class-wp-hook.php(308): insert_guest('')
+#1 /home/matheus/Local Sites/festaamille/app/public/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/matheus/Local Sites/festaamille/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/matheus/Local Sites/festaamille/app/public/wp-admin/admin-ajax.php(188): do_action('wp_ajax_insert_...')
+#4 {main}
+  thrown in /home/matheus/Local Sites/festaamille/app/public/wp-content/themes/amille-party/functions.php on line 69
+[14-Feb-2023 02:52:04 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/matheus/Local Sites/festaamille/app/public/wp-content/themes/amille-party/functions.php:69
+Stack trace:
+#0 /home/matheus/Local Sites/festaamille/app/public/wp-includes/class-wp-hook.php(308): insert_guest('')
+#1 /home/matheus/Local Sites/festaamille/app/public/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#2 /home/matheus/Local Sites/festaamille/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/matheus/Local Sites/festaamille/app/public/wp-admin/admin-ajax.php(188): do_action('wp_ajax_insert_...')
+#4 {main}
+  thrown in /home/matheus/Local Sites/festaamille/app/public/wp-content/themes/amille-party/functions.php on line 69

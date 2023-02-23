@@ -1,0 +1,65 @@
+.main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input-confirm-presence{
+    height: 55px;
+    font-size: 1.2rem;
+}
+
+.input-confirm-presence::placeholder{
+    color: var(--primary);
+}
+
+.btn-category-guest{
+    background-color: white;
+    border: 1px solid var(--gray-200);
+    height: 55px;
+    min-width: 100px;
+}
+
+.btn-category-guest.category-guest-active{
+    border: 1px solid var(--primary);
+}
+
+.delete-guest{
+    color: var(--primary);
+}
+
+.delete-guest:hover{
+    color: red;
+}
+
+#list-guest-model{
+    display: none;
+}
+
+#list-guest-area{
+    max-height: 20rem;
+    overflow-y: auto;
+}
+
+.btn-back-home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 40px;
+    font-size: 4rem;
+    border: 3px solid rgb(255, 193 ,7);
+    background-color: rgb(255, 193 ,7);
+}
+
+.btn-back-home:hover{
+    border: 3px solid var(--primary);
+    background-color: var(--primary);
+}
+
+.amille-party-bg-primary:hover{
+    background-color: var(--tertiary);
+}
