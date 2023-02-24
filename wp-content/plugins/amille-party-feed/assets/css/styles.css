@@ -1,0 +1,36 @@
+.main-photos{
+    
+}
+
+.item-photo{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+#metabox-wrapper{
+    margin-top: 20px;
+}
+
+.remove-photo{
+    background-color: red;
+    color: white;
+    border: none;
+    width: 28px;
+    border-radius: 999px;
+    height: 28px;
+    font-size: 21px;
+    font-weight: bold;
+    position: absolute;
+    right: -8px;
+    top: -6px;
+    cursor: pointer;
+}
+
+.remove-photo:hover{
+    background-color: rgb(172, 15, 15);
+}
