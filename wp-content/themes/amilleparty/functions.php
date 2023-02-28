@@ -21,6 +21,7 @@ function amille_party_load_scripts()
     wp_enqueue_style('main', get_template_directory_uri().'/assets/css/main.css', array('bootstrap'), '1.0', 'all');
     wp_enqueue_style('home', get_template_directory_uri().'/assets/css/home.css', array('main'), '1.0', 'all');
     wp_register_style('confirm-presence', get_template_directory_uri().'/assets/css/confirm-presence.css', array('bootstrap', 'main'), '1.0', 'all');
+    wp_register_style('feed', get_template_directory_uri().'/assets/css/feed.css', array('bootstrap', 'main'), '1.0', 'all');
 
 
     // wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap', array(), null);
@@ -31,6 +32,7 @@ function amille_party_load_scripts()
     wp_register_script('confirm-presence', get_template_directory_uri().'/assets/js/classes/ConfirmPresence.js', array('bootstrap-bundle', 'jquery', 'js-pdf'), '1.0', true);
     wp_register_script('presence', get_template_directory_uri().'/assets/js/classes/Presence.js', array('bootstrap-bundle', 'jquery'), '1.0', true);
     wp_register_script('js-pdf', get_template_directory_uri().'/assets/js/jspdf.umd.min.js', array('jquery'), '1.0', true);
+    wp_register_script('feed', get_template_directory_uri().'/assets/js/classes/Feed.js', array('jquery'), '1.0', true);
 }
 
 
@@ -72,6 +74,9 @@ add_action('wp_ajax_nopriv_layout_list_guests', 'layout_list_guests');
 
 add_action('wp_ajax_delete_list', 'delete_list');
 add_action('wp_ajax_nopriv_delete_list', 'delete_list');
+
+add_action('wp_ajax_like_post', 'like_post');
+add_action('wp_ajax_nopriv_like_post', 'like_post');
 
 //add_action('wp_ajax_send_email', 'send_email');
 //add_action('wp_ajax_nopriv_send_email', 'send_email');
@@ -173,6 +178,16 @@ function delete_list(){
         die_json_status_code(['msg' =>  'Lista deletada com sucesso!'], 200);
     }else{
         die_json_status_code(['msg' => 'Erro ao deletar lista!'], 404);
+    }
+}
+
+
+function like_post(){
+    $resp = update_post_meta($_POST['postId'], 'likes_feed', $_POST['amountLikes']);
+    if($resp){
+        die_json_status_code(['resp' =>  'success'], 200);
+    }else{
+        die_json_status_code(['resp' => 'error'], 404);
     }
 }
 

@@ -28,7 +28,8 @@
             $this->define_constants();
             require_once(AMILLE_PARTY_FEED_PATH.'post-types/class.amille_party_feed_cpt.php');
             $amille_party_feed_post_type = new Amille_Party_Feed_Post_Type();
-            //add_action('wp_ajax_update_guest', array($this, 'update_guest'));
+            add_action('wp_ajax_update_photos_feed', array($this, 'update_photos_feed'));
+            add_action('wp_ajax_get_photos_feed', array($this, 'get_photos_feed'));
         }
 
         public function define_constants(){
@@ -57,12 +58,21 @@
             die(json_encode($array));
         }
 
-        public static function update_guest(){
-            $resp = update_post_meta($_POST['postId'], 'guests', $_POST['obj']);
+        public static function update_photos_feed(){
+            $resp = update_post_meta($_POST['postId'], 'photos-feed', $_POST['obj']);
             if($resp){
-                die_json_status_code(['msg' =>  'Lista atualizada com sucesso!'], 200);
+                die_json_status_code(['msg' =>  'Salvo com sucesso!'], 200);
             }else{
-                die_json_status_code(['msg' => 'Erro ao atualizar lista!'], 404);
+                die_json_status_code(['msg' => 'Erro ao salvar lista!'], 404);
+            }
+        }
+
+        public static function get_photos_feed($post_id){
+            $data = get_post_meta($_POST['postId'], 'photos-feed', true);
+            if($data){
+                die_json_status_code(['data' =>  $data], 200);
+            }else{
+                die_json_status_code(['msg' => 'Erro buscar fotos!'], 404);
             }
         }
     }

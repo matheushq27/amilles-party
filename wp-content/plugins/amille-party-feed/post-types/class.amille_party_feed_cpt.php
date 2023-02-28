@@ -17,13 +17,13 @@ if(!class_exists('Amille_Party_Feed_Post_Type')){
                 'singular_name'         => 'Feed',
                 'menu_name'             => 'Feed',
                 'name_admin_bar'        => 'Feed',
-                'add_new'               => 'Adicionar Fotos',
-                'add_new_item'          => 'Adicionar nova Foto',
-                'new_item'              => 'Nova Foto',
-                'edit_item'             => 'Editar Foto',
-                'view_item'             => 'Visualizar Foto',
-                'all_items'             => 'Todas as Fotos',
-                'search_items'          => 'Procurar Foto',
+                'add_new'               => 'Adicionar Feed',
+                'add_new_item'          => 'Adicionar novo Feed',
+                'new_item'              => 'Novo Feed',
+                'edit_item'             => 'Editar Feed',
+                'view_item'             => 'Visualizar Feed',
+                'all_items'             => 'Todos os Feeds',
+                'search_items'          => 'Procurar Feed',
             );
         
             $args = array(
@@ -35,7 +35,7 @@ if(!class_exists('Amille_Party_Feed_Post_Type')){
                 'rewrite'            => array( 'slug' => 'foto' ),
                 'hierarchical'       => false,
                 'menu_position'      => 5,
-                'supports'           => array( 'title', 'editor'),
+                'supports'           => array( 'title', 'editor', 'comments'),
                 'exclude_from_search' => false,
                 'menu_icon' => 'dashicons-instagram'
             );
@@ -77,7 +77,7 @@ if(!class_exists('Amille_Party_Feed_Post_Type')){
 
             wp_enqueue_media();
             wp_register_style('styles', AMILLE_PARTY_FEED_URL.'assets/css/styles.css', array(), '1.0', 'all');
-            wp_register_script('scripts-feed', AMILLE_PARTY_FEED_URL.'assets/js/scripts.js', array('jquery'), '1.0', true);
+            wp_register_script('scripts-feed', AMILLE_PARTY_FEED_URL.'assets/js/FeedPhotos.js', array('jquery'), '1.0', true);
             wp_enqueue_script('scripts-feed');
             wp_enqueue_style('styles');
         }
