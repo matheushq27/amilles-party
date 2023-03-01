@@ -342,7 +342,7 @@ $pdf = $dompdf->output();
         $mail->Port = 465;
      
         $mail->setFrom('amilleribeiro3@gmail.com', "Lista de Convidados");
-        $mail->addAddress('amilleribeiro3@gmail.com, matheus.e.arruda@gmail.com');
+        $mail->addAddress('matheus.e.arruda@gmail.com');
         $mail->addStringAttachment($pdf, 'lista-de-presenca.pdf');
 
         $mail->isHTML(true);
@@ -358,7 +358,7 @@ $pdf = $dompdf->output();
         // }
 
     } catch (Exception $e) {
-        die_json_status_code(['msg' => 'Erro'], 404);
+        //die_json_status_code(['msg' => 'Erro'], 404);
     }
 
 }

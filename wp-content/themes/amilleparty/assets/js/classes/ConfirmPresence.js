@@ -9,6 +9,7 @@ class ConfirmPresence{
          this.btnDeleteGuest = document.querySelectorAll('.delete-guest')
          this.btnSaveList = document.querySelector('#btn-save-list')
          this.btnDeleteList = document.querySelector('#btn-delete-list')
+         this.spinnerSave = document.querySelector('#spinner-save')
 
          this.elName = document.querySelector('#name')
          this.elSurname = document.querySelector('#surname')
@@ -40,6 +41,7 @@ class ConfirmPresence{
             let idList = this.getIdList()
             let resp = ''
             
+            this.showSpinner()
             try{
                 resp = await jQuery.ajax({
                     type: 'POST',
@@ -59,6 +61,8 @@ class ConfirmPresence{
                     resp = error
                 }
             }
+
+            this.showSpinner(false)
             
             if(typeof resp.idList != "undefined" && resp.idList)
             {
@@ -74,6 +78,7 @@ class ConfirmPresence{
                 this.setIdList(resp.idList)
                 localStorage.setItem(this.keyListGuest, JSON.stringify(resp.idList))
             }
+
         })
 
         this.btnDeleteList.addEventListener("click", async (e) => {
@@ -105,31 +110,31 @@ class ConfirmPresence{
             }
         })
 
-        document.querySelector('#send-email').addEventListener("click", async (e) => {
-            e.preventDefault()
-            console.log('CLickou')
-            let resp = ''
-            try{
-                resp = await jQuery.ajax({
-                    type: 'POST',
-                    url: url.ajax_url,
-                    data:{
-                        action: 'send_email'
-                    }
-                })
+        // document.querySelector('#send-email').addEventListener("click", async (e) => {
+        //     e.preventDefault()
+        //     console.log('CLickou')
+        //     let resp = ''
+        //     try{
+        //         resp = await jQuery.ajax({
+        //             type: 'POST',
+        //             url: url.ajax_url,
+        //             data:{
+        //                 action: 'send_email'
+        //             }
+        //         })
                 
-            }catch(error){
+        //     }catch(error){
 
-                if(error.status == 500){
-                    let responseJSON = {msg: 'Erro nos nossos servidores. Tente novamente mais tarde.'}
-                    resp = {responseJSON}
-                }else{
-                    resp = error
-                }
-            }
-            console.log(resp)    
+        //         if(error.status == 500){
+        //             let responseJSON = {msg: 'Erro nos nossos servidores. Tente novamente mais tarde.'}
+        //             resp = {responseJSON}
+        //         }else{
+        //             resp = error
+        //         }
+        //     }
+        //     console.log(resp)    
 
-        })
+        // })
         
     
         this.init()
@@ -267,6 +272,14 @@ class ConfirmPresence{
         }else{
             this.btnDeleteList.classList.add('d-none') 
         } 
+    }
+
+    showSpinner(show = true){
+        if(show){
+            this.spinnerSave.classList.remove('d-none') 
+        }else{
+            this.spinnerSave.classList.add('d-none') 
+        }
     }
 
     /*METHODS LAYOUT*/

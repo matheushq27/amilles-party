@@ -28,9 +28,14 @@
 
         <div id="list-guest-area"></div>
 
-        <div class="mt-2">
+        <div class="mt-2 d-flex align-items-center gap-3">
           <button id="btn-save-list" type="button" class="btn amille-party-bg-primary text-white d-none">Salvar</button>
           <button id="btn-delete-list" type="button" class="btn btn-danger text-white d-none">Deletar lista</button>
+          
+          <div id="spinner-save" class="spinner-border text-primary d-none" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          
         </div>
 
         <div id="list-guest-model">

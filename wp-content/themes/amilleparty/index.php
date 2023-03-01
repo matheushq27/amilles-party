@@ -192,7 +192,7 @@ if(strtotime($currentDate) <= strtotime($dateParty)):
             <i class="ph-map-pin-fill"></i>
             <p class="m-0"><strong>Restaurante</strong></p>
           </div>
-          <p class="mb-4 fs-5 text-start">Louge Coco Bambu Cuiabá, Piso L1 shopping Estação, Santa Rosa, Cuiabá - MT</p>
+          <p class="mb-4 fs-5 text-start">Lounge Coco Bambu Cuiabá, Piso L1 shopping Estação, Santa Rosa, Cuiabá - MT</p>
           <iframe class="w-100" 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3843.0308073196297!2d-56.12189848514767!3d-15.590002789178516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x939db3dfa54e866b%3A0x4272b0f064321974!2sCoco%20Bambu!5e0!3m2!1spt-BR!2sbr!4v1675811217234!5m2!1spt-BR!2sbr" 
           height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
