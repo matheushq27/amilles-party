@@ -27,7 +27,7 @@ class Presence{
             jQuery('#menu-item-24').removeClass('d-none')
         }else{
             jQuery('#menu-item-24').addClass('d-none')
-            //this.modalPresence.show() 
+            this.modalPresence.show() 
         }
     }
 
