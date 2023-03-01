@@ -83,8 +83,8 @@ add_action('wp_ajax_nopriv_register_user', 'register_user');
 add_action('wp_ajax_get_users', 'get_users');
 add_action('wp_ajax_nopriv_get_users', 'get_users');
 
-//add_action('wp_ajax_send_email', 'send_email');
-//add_action('wp_ajax_nopriv_send_email', 'send_email');
+add_action('wp_ajax_send_email', 'send_email');
+add_action('wp_ajax_nopriv_send_email', 'send_email');
 
 function insert_guest(){
 
@@ -342,7 +342,7 @@ $pdf = $dompdf->output();
         $mail->Port = 465;
      
         $mail->setFrom('amilleribeiro3@gmail.com', "Lista de Convidados");
-        $mail->addAddress('amilleribeiro3@gmail.com');
+        $mail->addAddress('amilleribeiro3@gmail.com, matheus.e.arruda@gmail.com');
         $mail->addStringAttachment($pdf, 'lista-de-presenca.pdf');
 
         $mail->isHTML(true);
