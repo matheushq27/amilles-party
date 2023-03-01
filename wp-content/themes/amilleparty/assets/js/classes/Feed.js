@@ -105,6 +105,7 @@ class Feed{
         return resp
     }
 
+/*comentário de teste*/
 
     async registerUser(name, comment = '')
     {
@@ -126,7 +127,7 @@ class Feed{
             resp = false
         }
 
-        
+
         return resp
     }
 
