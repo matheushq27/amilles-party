@@ -14,7 +14,7 @@ class Feed{
             amountLikes = parseFloat(amountLikes)
             amountLikes++
             let resp = ''
-            debugger
+        
             try{
                 resp = await jQuery.ajax({
                     type: 'POST',
@@ -109,7 +109,6 @@ class Feed{
 
     async registerUser(name, comment = '')
     {
-        debugger
         let obj = {id: this.create_UUID(), name: name, comment: comment}
         let resp = ''
         try{
