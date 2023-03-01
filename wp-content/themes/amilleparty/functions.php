@@ -5,7 +5,6 @@ require_once('PHPMailer/Exception.php');
 require_once 'dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
-//require_once('src/Dompdf.php');
  
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -77,6 +76,12 @@ add_action('wp_ajax_nopriv_delete_list', 'delete_list');
 
 add_action('wp_ajax_like_post', 'like_post');
 add_action('wp_ajax_nopriv_like_post', 'like_post');
+
+add_action('wp_ajax_register_user', 'register_user');
+add_action('wp_ajax_nopriv_register_user', 'register_user');
+
+add_action('wp_ajax_get_users', 'get_users');
+add_action('wp_ajax_nopriv_get_users', 'get_users');
 
 //add_action('wp_ajax_send_email', 'send_email');
 //add_action('wp_ajax_nopriv_send_email', 'send_email');
@@ -190,6 +195,38 @@ function like_post(){
         die_json_status_code(['resp' => 'error'], 404);
     }
 }
+
+function register_user()
+{
+    $currentUsers = get_post_meta($_POST['postId'], 'feed_users', true);
+
+    if(is_array($currentUsers))
+    {
+        array_push($currentUsers, $_POST['users']);
+    }
+    else
+    {
+        $currentUsers = [];
+        array_push($currentUsers, $_POST['users']);
+    }
+
+    $resp = update_post_meta($_POST['postId'], 'feed_users',  $currentUsers);
+    if($resp){
+        die_json_status_code(['resp' =>  'success'], 200);
+    }else{
+        die_json_status_code(['resp' => 'error'], 404);
+    }
+}
+
+// function get_users(){
+//     $currentUsers = get_post_meta($_POST['postId'], 'feed_users', true);
+
+//     if($currentUsers){
+//         die_json_status_code($currentUsers, 200);
+//     }else{
+//         die_json_status_code(['resp' => 'error'], 404);
+//     }
+// }
 
 
  

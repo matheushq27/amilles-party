@@ -40,6 +40,37 @@
 
         public static function activate(){
             update_option('rewrite_rules', '');
+
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+            global $wpdb;
+
+            $table_name = $wpdb->prefix.'users_feed';
+            $charset_collate = $wpdb->get_charset_collate();
+
+            $version = get_option('users_feed_version');
+
+            if($version)
+            {
+
+                // $sql = "CREATE TABLE " . $table_name . " (
+                //     id INT NOT NULL AUTO_INCREMENT,
+                //     name VARCHAR(30) NOT NULL,
+                //     ) $charset_collate;";
+
+                // require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+                $sql = "CREATE TABLE " . $table_name . " (
+                    id INT NOT NULL AUTO_INCREMENT, 
+                    name TEXT NOT NULL, 
+                    PRIMARY KEY  (id)
+                ) ". $charset_collate .";";
+
+                dbDelta($sql);
+
+                $version = '1.0.0';
+
+                add_option('users_feed_version', $version);
+            }
         }
 
         public static function deactivate(){

@@ -12,8 +12,8 @@
     <article class="c-carousel c-carousel--simple mb-4">
         <div class="c-carousel__slides js-carousel--responsive">
           <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-1.jpeg' ?>)"></div></article>
-          <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-2.jpeg' ?>)"></div></article>
           <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-3.jpeg' ?>)"></div></article>
+          <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-2.jpeg' ?>)"></div></article>
           <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-4.jpeg' ?>)"></div></article>
           <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-5.jpeg' ?>)"></div></article>
           <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-6.jpeg' ?>)"></div></article>
@@ -160,6 +160,7 @@ if(strtotime($currentDate) <= strtotime($dateParty)):
 <div class="pt-3">
   <div class="container">
       <div class="row justify-content-center">
+      <?php if(strtotime($currentDate) < strtotime($dateParty)): ?>
         <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 text-center mb-3 d-flex align-items-center justify-content-center">
           <div>
             <h2 id="days" class="mb-4 text-white"></h2>
@@ -176,7 +177,12 @@ if(strtotime($currentDate) <= strtotime($dateParty)):
             <h2 class="text-white">horas para Amille's Party</h2>
           </div>
         </div>
-
+      <?php else: ?>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 text-center mb-3">
+          <h2 class="text-white fs-1 mb-0">É hoje!</h2>
+            <img src="<?= get_template_directory_uri().'/assets/img/current-party.png' ?>" class="w-100">
+        </div>
+      <?php endif; ?>
         <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 text-center mb-3 text-white">
           <div class="d-flex align-items-center mb-4 fs-4 gap-2">
             <i class="ph-calendar-blank-fill"></i>

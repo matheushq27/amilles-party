@@ -75,15 +75,16 @@
                                 </div>                                
 
                             </div>
-                            <div class="feed-footer d-flex align-items-center justify-content-between mt-2 gap-2">
+                            <div class="feed-footer d-flex align-items-center justify-content-between mt-2 gap-2 mb-3">
                                 <div class="d-flex align-items-center mt-2 gap-2">
                                     <i amount-likes="<?= $likes ?>" post-id="<?= $post->ID ?>" class="ph-heart fs-3 cursor-pointer like"></i>
                                     <!-- <i class="ph-heart-fill fs-3"></i> -->
-                                    <i class="ph-chat-circle fs-3 cursor-pointer comment"></i>
+                                    <i id="comment-button" class="ph-chat-circle fs-3 cursor-pointer comment" post-id="<?= $post->ID ?>"></i>
                                 </div>
                                 <span class="amount-likes amount-likes-<?= $post->ID ?>"><?= $likes ?> <?= $likes > 1 ? 'curtidas' : 'curtida'?></span>
                             </div>
-                            <?php comment_form(); ?>
+                            <div id="box-comment-user"></div>
+                            <div id="box-register-user" class="box-register-user mt-3"></div>
                             <hr>
                         </div>
                     </div>

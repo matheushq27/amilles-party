@@ -24,9 +24,10 @@ class Presence{
     init(){
         let list = this.getListGuestLocalStorage()
         if(list){
-            
+            jQuery('#menu-item-24').removeClass('d-none')
         }else{
-            this.modalPresence.show() 
+            jQuery('#menu-item-24').addClass('d-none')
+            //this.modalPresence.show() 
         }
     }
 

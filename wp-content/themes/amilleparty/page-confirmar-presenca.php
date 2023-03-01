@@ -29,7 +29,6 @@
         <div id="list-guest-area"></div>
 
         <div class="mt-2">
-          <button id="send-email" type="button" class="btn btn-danger text-white">Enviar email</button>
           <button id="btn-save-list" type="button" class="btn amille-party-bg-primary text-white d-none">Salvar</button>
           <button id="btn-delete-list" type="button" class="btn btn-danger text-white d-none">Deletar lista</button>
         </div>

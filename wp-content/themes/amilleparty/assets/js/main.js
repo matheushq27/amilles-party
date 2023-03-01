@@ -1,4 +1,6 @@
+document.getElementById("menu-item-24").classList.add('d-none')
 const $responsiveCarousel = document.querySelector(".js-carousel--responsive");
+
 
 new Glider($responsiveCarousel, {
   slidesToShow: 1,
@@ -122,4 +124,6 @@ function fixedMenu(){
 window.onscroll=function(){
   fixedMenu();  
 }
+
+
 
