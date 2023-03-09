@@ -61,8 +61,8 @@ $familly = !empty($familly) ? true : false;
     <div class="inner">
         <img class="live m-auto" src="<?= get_template_directory_uri().'/assets/img/logo.png' ?>">
         <p class="text-white post-notice text-center"></p>
-        <a href="/" class="btn btn-secondary amille-party-bg-secondary amille-party-color-border-secondary">voltar para home</a>
-        <a href="<?= home_url( $wp->request ); ?>" class="btn btn-secondary amille-party-bg-secondary amille-party-color-border-secondary">Continuar em Memórias</a>
+        <a href="/" class="btn btn-secondary amille-party-bg-secondary amille-party-color-border-secondary d-none">voltar para home</a>
+        <a href="<?= home_url( $wp->request ); ?>" class="btn btn-secondary amille-party-bg-secondary amille-party-color-border-secondary d-none">Continuar em Memórias</a>
     </div>
 </div>
 <section class="mt-5" id="main-section" data-user="cibelle">
