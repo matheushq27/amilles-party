@@ -63,6 +63,12 @@ function add_anchor_class($attr, $item, $args){
     return $attr;
 }
 
+add_action('wp_ajax_modal_feed', 'modal_feed');
+add_action('wp_ajax_nopriv_modal_feed', 'modal_feed');
+
+add_action('wp_ajax_layout_feed', 'layout_feed');
+add_action('wp_ajax_nopriv_layout_feed', 'layout_feed');
+
 add_filter('nav_menu_link_attributes', 'add_anchor_class', 10, 3);
 
 add_action('wp_ajax_insert_guest', 'insert_guest');
@@ -77,14 +83,17 @@ add_action('wp_ajax_nopriv_delete_list', 'delete_list');
 add_action('wp_ajax_like_post', 'like_post');
 add_action('wp_ajax_nopriv_like_post', 'like_post');
 
-add_action('wp_ajax_register_user', 'register_user');
-add_action('wp_ajax_nopriv_register_user', 'register_user');
+add_action('wp_ajax_register_comment', 'register_comment');
+add_action('wp_ajax_nopriv_register_comment', 'register_comment');
 
 add_action('wp_ajax_get_users', 'get_users');
 add_action('wp_ajax_nopriv_get_users', 'get_users');
 
 add_action('wp_ajax_send_email', 'send_email');
 add_action('wp_ajax_nopriv_send_email', 'send_email');
+
+add_action('wp_ajax_register_user', 'register_user');
+add_action('wp_ajax_nopriv_register_user', 'register_user');
 
 function insert_guest(){
 
@@ -188,7 +197,94 @@ function delete_list(){
 
 
 function like_post(){
-    $resp = update_post_meta($_POST['postId'], 'likes_feed', $_POST['amountLikes']);
+
+    $usersLikes = get_post_meta($_POST['postId'], 'likes_feed', true);
+
+    $idSent = $_POST['userLike']['id'];
+    $hasInTheArray = false;
+    $newArray = [];
+
+    if(!empty($usersLikes))
+    {
+        foreach($usersLikes as $user )
+        {
+            if($user['id'] == $idSent)
+            {
+                $hasInTheArray = true;
+            }
+        }
+        
+        
+        if($hasInTheArray)
+        {
+            if(count($usersLikes) == 1)
+            {
+                $newArray = '';
+            }
+            else
+            {
+                foreach($usersLikes as $user )
+                {
+                    if($user['id'] != $idSent)
+                    {
+                        array_push($newArray, $user);
+                    }
+                }
+            }
+            
+        }
+        else
+        {
+            $newArray = $usersLikes;
+            array_push($newArray, $_POST['userLike']);
+        }
+
+    }
+    else
+    {
+        array_push($newArray, $_POST['userLike']); 
+    }
+
+
+    $resp = update_post_meta($_POST['postId'], 'likes_feed', $newArray);
+    if($resp){
+        die_json_status_code(['resp' =>  'success'], 200);
+    }else{
+        die_json_status_code(['resp' => 'error'], 404);
+    }
+}
+
+function register_comment()
+{
+    // $currentUsers = get_post_meta($_POST['postId'], 'feed_comment', true);
+
+    // if(is_array($currentUsers))
+    // {
+    //     array_push($currentUsers, $_POST['users']);
+    // }
+    // else
+    // {
+    //     $currentUsers = [];
+    //     array_push($currentUsers, $_POST['users']);
+    // }
+
+    // $resp = update_post_meta($_POST['postId'], 'feed_users',  $currentUsers);
+    // if($resp){
+    //     die_json_status_code(['resp' =>  'success'], 200);
+    // }else{
+    //     die_json_status_code(['resp' => 'error'], 404);
+    // }
+
+    
+
+    $array = array(
+        'comment_post_ID' => $_POST['postId'],
+        'comment_author' => $_POST['name'],
+        'comment_content' => $_POST['comment']
+    );
+
+    $resp = wp_insert_comment($array);
+
     if($resp){
         die_json_status_code(['resp' =>  'success'], 200);
     }else{
@@ -198,24 +294,31 @@ function like_post(){
 
 function register_user()
 {
-    $currentUsers = get_post_meta($_POST['postId'], 'feed_users', true);
 
-    if(is_array($currentUsers))
-    {
-        array_push($currentUsers, $_POST['users']);
-    }
-    else
-    {
-        $currentUsers = [];
-        array_push($currentUsers, $_POST['users']);
-    }
+    // $array = array(
+    //     'comment_post_ID' => 187,
+    //     'comment_author' => 'Matheus Henrique',
+    //     'comment_content' => 'Um comentário aqui para não ficar vazio'
+    // );
+    // $resp = wp_insert_comment($array);
 
-    $resp = update_post_meta($_POST['postId'], 'feed_users',  $currentUsers);
-    if($resp){
-        die_json_status_code(['resp' =>  'success'], 200);
-    }else{
-        die_json_status_code(['resp' => 'error'], 404);
-    }
+    // wp_send_json(array('id' => $resp));
+
+
+    global $wpdb;
+    $table_name = $wpdb->prefix.'users_feed';
+
+    $name = $_POST['name'];
+
+    $wpdb->insert(
+        $table_name,
+        array(
+            'name' => $name
+        )
+    );
+
+    wp_send_json(array('id' => $wpdb->insert_id));
+    
 }
 
 // function get_users(){
@@ -342,7 +445,7 @@ $pdf = $dompdf->output();
         $mail->Port = 465;
      
         $mail->setFrom('amilleribeiro3@gmail.com', "Lista de Convidados");
-        $mail->addAddress('matheus.e.arruda@gmail.com');
+        $mail->addAddress('amilleribeiro3@gmail.com');
         $mail->addStringAttachment($pdf, 'lista-de-presenca.pdf');
 
         $mail->isHTML(true);
@@ -362,3 +465,6 @@ $pdf = $dompdf->output();
     }
 
 }
+
+include 'feed/layout-feed.php';
+include 'feed/modal-feed.php';

@@ -1,6 +1,60 @@
 .image-item-photo{
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     height: 500px;
 }
+
+.image-item-photo-empty{
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    border: 1px solid #ccc;
+} 
+
+.box-img-profile{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+}
+
+.ph-heart-fill{
+    color: red;
+}
+
+.feed-photo-post{
+    height: 67.5rem;
+    background-repeat: no-repeat;
+}
+
+.feed-footer .like:hover{
+    color: red;
+}
+
+.feed-footer .comment:hover{
+    color: blue;
+}
+
+.feed-footer .like:hover{
+    color: red;
+}
+
+.page-item.active{
+    
+}
+
+.active>.page-link, .page-link.active {
+    z-index: 3;
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.page-link{
+    color: var(--primary); 
+}
+
+
+

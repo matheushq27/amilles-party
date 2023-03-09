@@ -32,6 +32,14 @@ box-sizing: border-box;
     background-color: var(--primary);
 }
 
+.amille-party-bg-secondary{
+    background-color: var(--secondary);
+}
+
+.amille-party-color-border-secondary{
+    border-color: var(--secondary);
+}
+
 .amille-party-bg-primary-hover:hover{
     background-color: var(--tertiary);
 }
@@ -74,4 +82,36 @@ box-sizing: border-box;
     width: 300px;
 }
 
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:  var(--primary);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#preloader img{
+    width: 200px;
+}
+
+.live{
+    display: block;
+    border-radius: 50%;
+    animation: pulse 1500ms infinite;
+}
+
+  
+@keyframes pulse{
+    0%{
+        box-shadow:var(--secondary) 0 0 0 0;
+    }
+    75%{
+        box-shadow:var(--secondary) 0 0 0 16px;
+    }
+}
 

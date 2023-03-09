@@ -26,10 +26,21 @@
     class Amille_Party_Feed{
         function __construct(){
             $this->define_constants();
+            //add_action('admin_menu', array($this, 'add_menu'));
             require_once(AMILLE_PARTY_FEED_PATH.'post-types/class.amille_party_feed_cpt.php');
             $amille_party_feed_post_type = new Amille_Party_Feed_Post_Type();
             add_action('wp_ajax_update_photos_feed', array($this, 'update_photos_feed'));
             add_action('wp_ajax_get_photos_feed', array($this, 'get_photos_feed'));
+            //require_once(AMILLE_PARTY_FEED_PATH.'class.feed_settings.php');
+            //$amille_party_feed_settings = new Feed_Settings();
+
+            add_action('admin_footer', array($this, 'remove_genre_fields'));
+            add_filter('manage_edit-category_feed_columns', array($this, 'remove_columns'));
+            add_action('manage_category_feed_custom_column', array($this, 'manage_custom_columns'), 10, 3);
+            //add_action('category_feed_add_form_fields', array($this, 'add_form_field'));
+            add_action('category_feed_edit_form_fields', array($this, 'edit_form_field'), 10, 2);
+            add_action('created_category_feed', array($this, 'created_category_photo'));
+            add_action('edited_category_feed', array($this, 'created_category_photo'));
         }
 
         public function define_constants(){
@@ -51,13 +62,6 @@
 
             if($version)
             {
-
-                // $sql = "CREATE TABLE " . $table_name . " (
-                //     id INT NOT NULL AUTO_INCREMENT,
-                //     name VARCHAR(30) NOT NULL,
-                //     ) $charset_collate;";
-
-                // require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
                 $sql = "CREATE TABLE " . $table_name . " (
                     id INT NOT NULL AUTO_INCREMENT, 
@@ -106,6 +110,61 @@
                 die_json_status_code(['msg' => 'Erro buscar fotos!'], 404);
             }
         }
+
+        public function add_menu(){
+            add_menu_page('Feed', 'Feed', 'manage_options', 'feed_admin', array($this, 'page_settings_feed'), 'dashicons-instagram', 10);
+            add_submenu_page('feed_admin', 'Todos os Feeds', 'Todos os Feeds', 'manage_options', 'edit.php?post_type=amille_feed', null, null);
+            add_submenu_page('feed_admin', 'Adicionar Feed', 'Adicionar Feed', 'manage_options', 'post-new.php?post_type=amille_feed', null, null);
+            add_submenu_page('feed_admin', 'Categorias', 'Categorias', 'manage_options', 'edit-tags.php?taxonomy=category_feed&post_type=amille_feed', null, null);
+        }
+
+        public function page_settings_feed(){
+            require(AMILLE_PARTY_FEED_PATH . 'views/settings-page.php');
+        }
+
+        public function remove_genre_fields()
+        {
+            global $current_screen;
+            if($current_screen->id == 'edit-category_feed'){
+                wp_enqueue_media();
+                require_once(AMILLE_PARTY_FEED_PATH.'remove_genre_fields.php');
+            }
+        }
+
+        public function add_form_field()
+        {
+            require_once(AMILLE_PARTY_FEED_PATH.'form_field_category_photo.php');
+        }
+
+        public function edit_form_field($term, $taxonomy)
+        {
+            require_once(AMILLE_PARTY_FEED_PATH.'form_field_edit_category_photo.php');
+        }
+
+        public function created_category_photo($term_id){
+            update_term_meta($term_id, 'photo-category', sanitize_text_field($_POST['photo-category']));
+        }
+
+        public function remove_columns($columns){
+            if($columns['description'])
+            {
+                unset($columns['description']);
+                unset($columns['posts']);
+                unset($columns['slug']);
+                $columns['photo'] = 'Foto';
+            }
+            
+            return $columns;
+        }
+
+        public function manage_custom_columns($string, $columns, $term_id){
+            switch($columns){
+                case 'photo':
+                    echo '<img src="'.get_term_meta($term_id, 'photo-category', true).'" width="80">';
+                    break;
+            }
+        }
+        
     }
  }
 

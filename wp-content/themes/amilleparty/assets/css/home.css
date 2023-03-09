@@ -1,36 +1,4 @@
 
-/*FEED*/
-
-/* .feed-header-photo{
-    width: 50px;
-    height: 50px;
-    border-radius: 999px;
-} */
-
-.feed-header-photo img{
-    width: 50px;
-    height: 50px;
-    border-radius: 999px;
-}
-
-.feed-photo-post{
-    /*width: 67.5rem;*/
-    height: 67.5rem;
-    background-repeat: no-repeat;
-}
-
-.feed-footer .like:hover{
-    color: red;
-}
-
-.feed-footer .comment:hover{
-    color: blue;
-}
-
-.feed-footer .like:hover{
-    color: red;
-}
-
 .cursor-pointer{
     cursor: pointer;
 }
