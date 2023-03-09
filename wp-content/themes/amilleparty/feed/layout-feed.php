@@ -11,8 +11,16 @@ function layout_feed(){
     );
 
     $paged = $_POST['pageCurrent'];
-    //$the_posts = get_posts(array('post_type' => 'amille_feed', 'posts_per_page' => 2,'orderby' => 'date', 'order' => 'DESC', 'tax_query' => $argsTax));
-    $the_posts = new WP_Query(array('post_type' => 'amille_feed', 'posts_per_page' => 1, 'paged' => $paged, 'orderby' => 'date', 'order' => 'DESC', 'tax_query' => $argsTax));
+
+    $the_posts = query($_POST['userFeed'], $_POST['categoryCurrent'], $paged);
+
+    if($the_posts->post_count == 0)
+    {
+        $the_posts = query($_POST['userFeed'], 'familia', $paged);
+    }
+
+    //$the_posts = new WP_Query(array('post_type' => 'amille_feed', 'posts_per_page' => 10, 'paged' => $paged, 'orderby' => 'date', 'order' => 'DESC', 'tax_query' => $argsTax));
+    
     $total_pages = $the_posts->max_num_pages;
 
     if($the_posts->post_count > 0){
@@ -149,4 +157,18 @@ function layout_feed(){
     die_json_status_code(['msg' => 'sem postagens'], 404);
 }
 exit;
+}
+
+function query($userFeed, $categoryCurrent, $pageCurrent)
+{
+    $argsTax = array(
+        'relation' => 'AND', 
+        array('taxonomy' => 'category_feed', 'field' => 'slug', 'terms' => array( $categoryCurrent ), 'include_children' => false),
+        array('taxonomy' => 'category_feed', 'field' => 'slug', 'terms' => array( $userFeed), 'include_children' => false)
+    );
+
+    $paged = $pageCurrent;
+    $the_posts = new WP_Query(array('post_type' => 'amille_feed', 'posts_per_page' => 10, 'paged' => $paged, 'orderby' => 'date', 'order' => 'DESC', 'tax_query' => $argsTax));
+
+    return $the_posts;
 }

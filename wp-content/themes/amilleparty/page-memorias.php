@@ -44,7 +44,6 @@ if(!empty($familly))
     foreach($familly as $photos)
     {
         $data = get_post_meta($photos->ID, 'photos-feed', true);
-        var_dump($data);
         if($data){
             $photosFamilly = true;
         }
@@ -55,6 +54,17 @@ if(!empty($familly))
 
 $friends = !empty($friends) ? true : false;
 $familly = !empty($familly) ? true : false;
+
+$tab_active_friends = '';
+$tab_active_family = '';
+
+if(!$friends)
+{
+    $tab_active_family = 'active';
+}else{
+    $tab_active_friends = 'active';
+}
+
 
 ?>
 <div id="preloader">
@@ -72,13 +82,13 @@ $familly = !empty($familly) ? true : false;
                 <nav>
                     <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
                         <?php if($friends && $photosFriends): ?>
-                            <button class="nav-link active button-tab" id="nav-home-tab" category-id="amigos" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                            <button class="nav-link button-tab <?= $tab_active_friends ?>" id="nav-home-tab" category-id="amigos" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
                                 Amigos
                             </button>
                         <?php endif; ?>
 
                         <?php if($familly && $photosFamilly): ?>
-                            <button class="nav-link button-tab" id="nav-profile-tab" category-id="familia" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                            <button class="nav-link button-tab <?= $tab_active_family ?>" id="nav-profile-tab" category-id="familia" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                                 Família
                             </button>
                         <?php endif; ?>
