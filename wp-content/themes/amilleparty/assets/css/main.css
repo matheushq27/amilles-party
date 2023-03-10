@@ -78,8 +78,8 @@ box-sizing: border-box;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height: 300px;
-    width: 300px;
+    height: 370px;
+    width: 100%;
 }
 
 #preloader {
