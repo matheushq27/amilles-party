@@ -213,7 +213,7 @@ if(strtotime($currentDate) <= strtotime($dateParty)):
     <div class="modal-content">
       <div class="modal-header justify-content-center position-relative">
         <div class="text-center">
-          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Fale para Amille leal se você poderá ir.</h1>
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Fale para Amille Leal se você poderá ir.</h1>
           <p class="m-0 text-secondary">01 de Abril às 21:00</p>
         </div>
         <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal" aria-label="Close">
