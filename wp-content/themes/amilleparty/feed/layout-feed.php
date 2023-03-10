@@ -119,7 +119,7 @@ function layout_feed(){
                         
                         
                             <p class="mb-1">
-                                <strong class="me-1 amille-party-color-primary">Amille</strong>
+                                <strong class="me-1 amille-party-color-primary"><?= $name ?></strong>
                                 <?= $post->post_content ?>
                             </p>
 
