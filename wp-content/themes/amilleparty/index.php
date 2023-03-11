@@ -24,7 +24,7 @@
       <div class="js-carousel--responsive-dots"></div>
     </article> -->
 
-    <?php echo do_shortcode('[sp_wpcarousel id="212"]'); ?>
+    <?php echo do_shortcode('[sp_wpcarousel id="334"]'); ?>
 
     <div class="row mt-3">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
