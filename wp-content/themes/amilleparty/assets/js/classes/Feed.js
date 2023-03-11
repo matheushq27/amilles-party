@@ -10,6 +10,7 @@ class Feed{
         this.currentIdPost = ''
         this.modalFeed = ''
         this.categoryCurrent = 'amigos'
+        this.pageCurrent = jQuery('#main-section').attr('data-page')
         this.feedUser = jQuery('#main-section').attr('data-user')
         this.postsLikes = []
 
@@ -351,6 +352,7 @@ class Feed{
     async getFeed(pageCurrent = 1)
     {
         let resp = ''
+        let page = this.pageCurrent
         let category = this.getCategoryCurrent()
         try{
             resp = await jQuery.ajax({
@@ -361,6 +363,7 @@ class Feed{
                     categoryCurrent: this.getCategoryCurrent(),
                     postsLikes: this.getPostLikesUserFeed(),
                     userFeed: this.feedUser,
+                    mainPageCurrent: page,
                     pageCurrent: pageCurrent
                 }
             })

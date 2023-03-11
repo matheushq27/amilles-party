@@ -7,7 +7,7 @@
     <?php  wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >
-<nav class="navbar navbar-expand-lg w-100 text-white fixed-top nav-top" style="z-index: 999;">
+<nav id="nav-main-header" class="navbar navbar-expand-lg w-100 text-white fixed-top nav-top" style="z-index: 999;">
   <div class="container-fluid">
     <!-- <a class="navbar-brand" href="#">
       <img src="<?= get_template_directory_uri().'/assets/img/logo.png' ?>" alt="Bootstrap" width="30" height="24">

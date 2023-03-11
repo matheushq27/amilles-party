@@ -4,36 +4,52 @@ function layout_feed(){
     $postsLikes = $_POST['postsLikes'];
     $likeOn = false;
 
-    $argsTax = array(
-        'relation' => 'AND', 
-        array('taxonomy' => 'category_feed', 'field' => 'slug', 'terms' => array( $_POST['categoryCurrent'] ), 'include_children' => false),
-        array('taxonomy' => 'category_feed', 'field' => 'slug', 'terms' => array( $_POST['userFeed'] ), 'include_children' => false)
-    );
-
     $paged = $_POST['pageCurrent'];
+    $mainPageCurrent = $_POST['mainPageCurrent'];
+    $friendsOrFamily = $_POST['categoryCurrent'];
 
-    $the_posts = query($_POST['userFeed'], $_POST['categoryCurrent'], $paged);
+    // var_dump(
+    //     array(
+    //         $mainPageCurrent,
+    //         $friendsOrFamily
+    //     )
+    // );
+
+    $the_posts = query($mainPageCurrent,  $friendsOrFamily, $paged);
+
+    //var_dump( $the_posts->posts, 'amigos');
 
     if($the_posts->post_count == 0)
     {
-        $the_posts = query($_POST['userFeed'], 'familia', $paged);
+        $the_posts = query($mainPageCurrent, 'familia', $paged);
+        //var_dump( $the_posts->posts, 'familia');
     }
 
-    //$the_posts = new WP_Query(array('post_type' => 'amille_feed', 'posts_per_page' => 10, 'paged' => $paged, 'orderby' => 'date', 'order' => 'DESC', 'tax_query' => $argsTax));
-    
     $total_pages = $the_posts->max_num_pages;
 
     if($the_posts->post_count > 0){
 
-    $term = get_term_by('slug', $_POST['userFeed'], 'category_feed');
-    $name = $term->name;
-    $term = $term->term_id;
+    // $term = get_term_by('slug', $_POST['userFeed'], 'category_feed');
+    // $name = $term->name;
+    // $term = $term->term_id;
     
     $photo_profile = get_term_meta($term, 'photo-category', true);
-    
+
         foreach($the_posts->posts as $post): 
             $data = get_post_meta($post->ID, 'photos-feed', true);
             $likes = get_post_meta($post->ID, 'likes_feed', true);
+            $terms = get_the_terms($post->ID, 'category_feed');
+
+            //var_dump($terms);
+
+            foreach($terms as $term)
+            {
+                if($term->slug == 'cibelle' || $term->slug == 'amille')
+                {
+                    $name = $term->name;
+                    $photo_profile = get_term_meta($term->term_id, 'photo-category', true);
+                }
+            }
 
             if(is_array($likes)){
                 $likes = count($likes); 
@@ -159,13 +175,25 @@ function layout_feed(){
 exit;
 }
 
-function query($userFeed, $categoryCurrent, $pageCurrent)
+
+function query($pageMain, $friendsOrFamily, $pageCurrent)
 {
-    $argsTax = array(
-        'relation' => 'AND', 
-        array('taxonomy' => 'category_feed', 'field' => 'slug', 'terms' => array( $categoryCurrent ), 'include_children' => false),
-        array('taxonomy' => 'category_feed', 'field' => 'slug', 'terms' => array( $userFeed), 'include_children' => false)
-    );
+        $argsTax = array(
+            'relation' => 'OR',
+            array(
+                'taxonomy' => 'category_feed',
+                'field'    => 'slug',
+                'terms'    => array('amille', $pageMain, $friendsOrFamily),
+                'operator' => 'AND',
+            ),
+            array(
+                'taxonomy' => 'category_feed',
+                'field'    => 'slug',
+                'terms'    => array('cibelle', $pageMain, $friendsOrFamily),
+                'operator' => 'AND',
+            )
+        );
+
 
     $paged = $pageCurrent;
     $the_posts = new WP_Query(array('post_type' => 'amille_feed', 'posts_per_page' => 10, 'paged' => $paged, 'orderby' => 'date', 'order' => 'DESC', 'tax_query' => $argsTax));

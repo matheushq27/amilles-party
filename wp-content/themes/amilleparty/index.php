@@ -9,7 +9,7 @@
     <div class="text-center mb-4">
       <h2 class="fs-3 text-dark">Deus escreveu a minha HISTÓRIA, e você FILHA, é a melhor parte dela...</h2>
     </div>
-    <article class="c-carousel c-carousel--simple mb-4">
+    <!-- <article class="c-carousel c-carousel--simple mb-4">
         <div class="c-carousel__slides js-carousel--responsive">
           <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-1.jpeg' ?>)"></div></article>
           <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-3.jpeg' ?>)"></div></article>
@@ -19,13 +19,14 @@
           <article class="c-carousel__slide"><div class="bg-slide-main" style="background-image: url(<?= get_template_directory_uri().'/assets/img/slide-6.jpeg' ?>)"></div></article>
         </div>
 
-      <!-- <button class="js-carousel--responsive-prev">«</button>
-      <button class="js-carousel--responsive-next">»</button> -->
+      <button class="js-carousel--responsive-prev">«</button>
+      <button class="js-carousel--responsive-next">»</button>
       <div class="js-carousel--responsive-dots"></div>
-    </article>
+    </article> -->
 
+    <?php echo do_shortcode('[sp_wpcarousel id="212"]'); ?>
 
-    <div class="row">
+    <div class="row mt-3">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
           <p>
           Sempre sonhei em ser mãe, e com direito de sonhar mãe de uma menina. 

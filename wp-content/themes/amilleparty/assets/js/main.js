@@ -1,33 +1,33 @@
 document.getElementById("menu-item-24").classList.add('d-none')
-const $responsiveCarousel = document.querySelector(".js-carousel--responsive");
+// const $responsiveCarousel = document.querySelector(".js-carousel--responsive");
 
 
-new Glider($responsiveCarousel, {
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  draggable: true,
-  dots: ".js-carousel--responsive-dots",
-  arrows: {
-    prev: ".js-carousel--responsive-prev",
-    next: ".js-carousel--responsive-next",
-  },
-  responsive: [
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-      },
-    },
-    {
-      breakpoint: 900,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-      },
-    },
-  ],
-});
+// new Glider($responsiveCarousel, {
+//   slidesToShow: 1,
+//   slidesToScroll: 1,
+//   draggable: true,
+//   dots: ".js-carousel--responsive-dots",
+//   arrows: {
+//     prev: ".js-carousel--responsive-prev",
+//     next: ".js-carousel--responsive-next",
+//   },
+//   responsive: [
+//     {
+//       breakpoint: 600,
+//       settings: {
+//         slidesToShow: 2,
+//         slidesToScroll: 2,
+//       },
+//     },
+//     {
+//       breakpoint: 900,
+//       settings: {
+//         slidesToShow: 3,
+//         slidesToScroll: 3,
+//       },
+//     },
+//   ],
+// });
 
 const modalEl = document.getElementById("modal-confirm-presence")
 
@@ -108,8 +108,7 @@ document.getElementById("whatsapp-link").addEventListener("click", function(e){
     openWhatsapp('65992402545', 'Olá Matheus Arruda da Onedev Desenvolvimentos!')
 })
 
-
-const nav=document.getElementsByTagName("nav")[0];
+const nav=document.getElementById("nav-main-header");
 const header=document.getElementsByTagName("header");
 const topoNav=nav.offsetTop;
 
