@@ -91,7 +91,7 @@ function layout_feed(){
 
             
 
-                                <div id="carouselFeed" class="carousel slide" data-bs-ride="carousel">
+                                <div id="carouselFeed-<?= $post->ID ?>" class="carousel slide carousel-feed" data-bs-ride="carousel">
                                     <div class="carousel-inner">
                                     <?php foreach($data as $key => $d): ?>
                                         <div class="carousel-item-<?= $post->ID ?> carousel-item <?= $key == 0 ? 'active'  : '' ?>">
@@ -100,11 +100,11 @@ function layout_feed(){
                                     <?php endforeach; ?>
                                     </div>
                                     <?php if(count($data) > 1): ?>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselFeed" data-bs-slide="prev" post-id="<?= $post->ID ?>">
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselFeed-<?= $post->ID ?>" data-bs-slide="prev" post-id="<?= $post->ID ?>">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselFeed" data-bs-slide="next" post-id="<?= $post->ID ?>">
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselFeed-<?= $post->ID ?>" data-bs-slide="next" post-id="<?= $post->ID ?>">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>

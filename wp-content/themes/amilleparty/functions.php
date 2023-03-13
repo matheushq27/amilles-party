@@ -95,6 +95,7 @@ add_action('wp_ajax_nopriv_send_email', 'send_email');
 add_action('wp_ajax_register_user', 'register_user');
 add_action('wp_ajax_nopriv_register_user', 'register_user');
 
+
 function insert_guest(){
 
     $idList = $_POST['idList'];

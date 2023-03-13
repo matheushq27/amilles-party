@@ -377,11 +377,13 @@ class Feed{
            jQuery('#back-home').removeClass('d-none')
         }
         
+       
         if(category == 'amigos'){
             jQuery('#feed-friends-photos').html(resp)
         }else{
             jQuery('#feed-family-photos').html(resp) 
         }
+
     }
 
     async getModalComments()

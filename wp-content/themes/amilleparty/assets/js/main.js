@@ -108,21 +108,28 @@ document.getElementById("whatsapp-link").addEventListener("click", function(e){
     openWhatsapp('65992402545', 'Olá Matheus Arruda da Onedev Desenvolvimentos!')
 })
 
-const nav=document.getElementById("nav-main-header");
-const header=document.getElementsByTagName("header");
-const topoNav=nav.offsetTop;
+const nav=document.getElementById("nav-main-header")
+if(nav)
+{
+  const header=document.getElementsByTagName("header")
+  const topoNav = nav.offsetTop;
 
-function fixedMenu(){
-  if(window.pageYOffset > topoNav){
-    nav.classList.add("amille-party-bg-primary");
-  } else if(window.pageYOffset <= topoNav){
-    nav.classList.remove("amille-party-bg-primary");
+   function fixedMenu(){
+    if(window.pageYOffset > topoNav){
+      nav.classList.add("amille-party-bg-primary");
+    } else if(window.pageYOffset <= topoNav){
+      nav.classList.remove("amille-party-bg-primary");
+    }
   }
+  
+  window.onscroll=function(){
+    fixedMenu();  
+  }
+
 }
 
-window.onscroll=function(){
-  fixedMenu();  
-}
+
+
 
 
 
