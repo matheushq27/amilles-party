@@ -340,7 +340,11 @@ function send_email($guestName){
     $qtdAdult = 0;
     $qtdAdolescent = 0;
     $postArray = [];
-    $the_posts = get_posts(array('post_type' => 'amille_guest_list', 'orderby' => 'title', 'order' => 'ASC'));
+    $the_posts = get_posts(array('post_type' => 'amille_guest_list', 'orderby' => 'title', 'order' => 'ASC', 'posts_per_page' => -1));
+
+    //print_r(json_encode($the_posts));
+    //die();
+    
     $array = [];
 
     foreach($the_posts as $post){
